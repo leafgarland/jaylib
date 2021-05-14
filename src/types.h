@@ -399,6 +399,15 @@ static Janet jaylib_wrap_vec2(Vector2 x) {
     return janet_wrap_tuple(janet_tuple_end(tup));
 }
 
+static Janet jaylib_wrap_rect(Rectangle x) {
+    Janet *tup = janet_tuple_begin(4);
+    tup[0] = janet_wrap_integer(x.x);
+    tup[1] = janet_wrap_integer(x.y);
+    tup[2] = janet_wrap_integer(x.width);
+    tup[3] = janet_wrap_integer(x.height);
+    return janet_wrap_tuple(janet_tuple_end(tup));
+}
+
 static const JanetAbstractType AT_TextureCubemap = {
     "jaylib/texture-cubemap",
     JANET_ATEND_NAME
