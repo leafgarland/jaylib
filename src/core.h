@@ -799,6 +799,19 @@ static Janet cfun_EndTextureMode(int32_t argc, Janet *argv) {
     return janet_wrap_nil();
 }
 
+static Janet cfun_BeginBlendMode(int32_t argc, Janet *argv) {
+    janet_fixarity(argc, 1);
+    BeginBlendMode(jaylib_getblend(argv, 0));
+    return janet_wrap_nil();
+}
+
+static Janet cfun_EndBlendMode(int32_t argc, Janet *argv) {
+    (void) argv;
+    janet_fixarity(argc, 0);
+    EndBlendMode();
+    return janet_wrap_nil();
+}
+
 static Janet cfun_SetCameraMode(int32_t argc, Janet *argv) {
     janet_fixarity(argc, 2);
     Camera3D *camera = jaylib_getcamera3d(argv, 0);
@@ -947,6 +960,8 @@ static JanetReg core_cfuns[] = {
     {"end-mode-3d", cfun_EndMode3D, NULL},
     {"begin-texture-mode", cfun_BeginTextureMode, NULL},
     {"end-texture-mode", cfun_EndTextureMode, NULL},
+    {"begin-blend-mode", cfun_BeginBlendMode, NULL},
+    {"end-blend-mode", cfun_EndBlendMode, NULL},
     {"camera-2d", cfun_Camera2D, NULL},
     {"camera-3d", cfun_Camera3D, NULL},
     {"set-camera-mode", cfun_SetCameraMode, NULL},

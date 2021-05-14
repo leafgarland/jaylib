@@ -188,6 +188,14 @@ static const KeyDef mouse_defs[] = {
     {"right", MOUSE_RIGHT_BUTTON}
 };
 
+static const KeyDef blend_defs[] = {
+    {"add-colors", BLEND_ADD_COLORS},
+    {"additive", BLEND_ADDITIVE},
+    {"alpha", BLEND_ALPHA},
+    {"multiplied", BLEND_MULTIPLIED},
+    {"subtract-colors", BLEND_SUBTRACT_COLORS}
+};
+
 static int jaylib_castdef(const Janet *argv, int32_t n, const KeyDef *defs, int count) {
     if (janet_checkint(argv[n])) {
         return janet_unwrap_integer(argv[n]);
@@ -224,6 +232,10 @@ static int jaylib_getaxis(const Janet *argv, int32_t n) {
 
 static int jaylib_getmouse(const Janet *argv, int32_t n) {
     return jaylib_castdef(argv, n, mouse_defs, sizeof(mouse_defs) / sizeof(KeyDef));
+}
+
+static int jaylib_getblend(const Janet *argv, int32_t n) {
+    return jaylib_castdef(argv, n, blend_defs, sizeof(blend_defs) / sizeof(KeyDef));
 }
 
 struct named_color {
